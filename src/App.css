@@ -1,0 +1,169 @@
+* {
+  box-sizing: border-box;
+}
+
+.App {
+  text-align: center;
+}
+
+.App {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 10rem auto;
+  grid-template-areas:
+    "settings header"
+    "settings scoresheet";
+  align-items: start;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+header {
+  grid-area: header;
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+header p {
+  margin-top: 0;
+  font-style: italic;
+}
+
+#ScoreSheet {
+  grid-area: scoresheet;
+  padding-inline: 2rem;
+}
+
+#ScoreSheet tr:first-child td:first-child {
+  width: 4rem;
+}
+
+.Score {
+  border: 2px solid gold;
+}
+
+.Score-grid {
+  display: grid;
+  grid-template-areas:
+    "score desired"
+    "score taken";
+  grid-template-columns: 6rem 3rem;
+  align-items: center;
+  justify-content: end;
+}
+
+.Score span {
+  grid-area: score;
+}
+
+.Score input {
+  font-size: 1.1rem;
+}
+
+.Score .desiredTricks {
+  grid-area: desired;
+}
+
+.Score .takenTricks {
+  grid-area: taken;
+}
+
+#Settings {
+  grid-area: settings;
+  border-right: 2px solid slategray;
+  padding: 2rem;
+  text-align: left;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  bottom: 0;
+  height: 100vh;
+}
+
+#Settings h2 {
+  font-size: 2rem;
+  margin-top: 0;
+  margin-bottom: 3rem;
+}
+
+#Settings h3 {
+  font-size: 1.1rem;
+  font-weight: normal;
+}
+
+.BoolToggle label {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.BoolToggle input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.input {
+  padding-bottom: 2rem;
+  border-top: 2px solid slategray;
+}
+
+.NumberCounter label {
+  display: block;
+  margin-top: -17px;
+}
+
