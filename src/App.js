@@ -7,11 +7,16 @@ import Player from './Player';
 export default class App extends React.Component {
   constructor(props) {
     super(props)
+
+    let maxCardsStart = 10
+    let numRounds = maxCardsStart * 2 - 1;
+
     this.state = {
       allowNegativeScores: false,
-      players: [new Player(0), new Player(1)],
-      maxCards: 10,
-      upAndDown: true
+      maxCards: maxCardsStart,
+      numRounds: numRounds,
+      upAndDown: true,
+      players: [new Player(0, numRounds), new Player(1, numRounds)],
     }
 
     this.addPlayer = this.addPlayer.bind(this)
@@ -22,6 +27,9 @@ export default class App extends React.Component {
     this.updatePlayerCount = this.updatePlayerCount.bind(this)
     this.updateMaxCards = this.updateMaxCards.bind(this)
     this.changeUpAndDown = this.changeUpAndDown.bind(this)
+    this.updatePlayer = this.updatePlayer.bind(this)
+
+    //this.updatePlayerHistory(0, 4, 20)
 
   }
 
@@ -64,7 +72,7 @@ export default class App extends React.Component {
 
   // Used on this.players
   updatePlayerScore(player) {
-    let playersList = Object.assign({}, this.state.players);
+    let playersList = [...this.state.players]
     let modifiedPlayer;
     //newSelected.name = 'Barfoo';
     //this.setState({ selected: newSelected });
@@ -76,6 +84,12 @@ export default class App extends React.Component {
 
   changeUpAndDown(event) {
     this.setState({ upAndDown: !this.state.upAndDown })
+  }
+
+  updatePlayer(playerIndex, player) {
+    let playerList = [...this.state.players]
+    playerList[playerIndex] = player
+    this.setState({ playerList: playerList })
   }
 
   render() {
@@ -100,6 +114,9 @@ export default class App extends React.Component {
           updatePlayerName={this.updatePlayerName}
           maxCards={this.state.maxCards}
           upAndDown={this.state.upAndDown}
+          numRounds={this.state.numRounds}
+          updatePlayerHistory={this.updatePlayerHistory}
+          updatePlayer={this.updatePlayer}
         />
       </div>
     )

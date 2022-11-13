@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Score from './Score';
+import ScoreCell from './ScoreCell';
 
 export default class ScoreRow extends Component {
   render() {
@@ -7,7 +7,7 @@ export default class ScoreRow extends Component {
       <tr>
         <td>{this.props.rowNum + 1}</td>
         {this.props.players.map((player, index) => 
-          <Score key={index} player={player} allowNegativeScores={this.props.allowNegativeScores}/>
+          <ScoreCell key={index} rowNum={this.props.rowNum} cellNum={index} player={player} allowNegativeScores={this.props.allowNegativeScores} updatePlayer={this.props.updatePlayer}/>
         )}
       </tr>
     )
