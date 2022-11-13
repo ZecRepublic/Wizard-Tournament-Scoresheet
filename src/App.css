@@ -45,7 +45,7 @@ header p {
 }
 
 #ScoreSheet th label {
-  margin-bottom: 1rem;
+  display: block;
   position: relative;
 
 }
@@ -60,10 +60,10 @@ header p {
   color: white;
   position: absolute;
   top: 0;
-  left: 0;
+  -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
   text-align: center;
-  padding-top: 2px;
+  margin: 0px;
 }
 
 #ScoreSheet th label h2 {
@@ -71,6 +71,7 @@ header p {
   margin: 0;
   font-size: 1.6rem;
   padding-bottom: 1rem;
+  min-height: 3rem;
 }
 
 #ScoreSheet th label:focus-within input {
