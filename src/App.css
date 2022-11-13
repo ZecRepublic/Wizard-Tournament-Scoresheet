@@ -44,6 +44,44 @@ header p {
   width: 4rem;
 }
 
+#ScoreSheet th label {
+  margin-bottom: 1rem;
+  position: relative;
+
+}
+
+#ScoreSheet th label input {
+  opacity: 0;
+  font-size: 1.6rem;
+  font-weight: bold;
+  background-color: rgba(0 0 0 / 0);
+  border: none;
+  padding: 0;
+  color: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateX(-50%);
+  text-align: center;
+  padding-top: 2px;
+}
+
+#ScoreSheet th label h2 {
+  opacity: 1;
+  margin: 0;
+  font-size: 1.6rem;
+  padding-bottom: 1rem;
+}
+
+#ScoreSheet th label:focus-within input {
+  opacity: 1;
+  border-color: gold;
+}
+
+#ScoreSheet th label:focus-within h2 {
+  opacity: 0;
+}
+
 .Score {
   border: 2px solid gold;
 }

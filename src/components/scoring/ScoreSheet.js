@@ -9,14 +9,13 @@ export default class ScoreSheet extends Component {
     for (let i = 0; i < this.props.numRounds; i++) {
       this.rows.push(i)
     }
-    console.log(this.props.players)
     return (
       <table id="ScoreSheet">
         <tbody>
           <tr>
             <td></td>
             {this.props.players.map((player, index) => 
-              <ScoreHeading key={index} player={player} updatePlayerName={this.props.updatePlayerName}/>
+              <ScoreHeading key={index} index={index} player={player} updatePlayer={this.props.updatePlayer}/>
             )}
           </tr>
           {this.rows.map((row) => 
