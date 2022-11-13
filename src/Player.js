@@ -71,7 +71,6 @@ export default class Player {
 
     this.updateHistory = this.updateHistory.bind(this)
 
-    //this.updateHistory(3, 20)
   }
 
   updateHistory(startIndex) {

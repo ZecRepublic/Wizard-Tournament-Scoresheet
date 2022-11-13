@@ -10,14 +10,12 @@ export default class ScoreCell extends Component {
 
   updateDesiredTricks(event) {
     let modifiedPlayer = this.props.player
-    //console.log(this.props.rowNum)]
     let prevScore
     if (this.props.rowNum !== 0) {
       prevScore = modifiedPlayer.history[this.props.rowNum - 1].score
     } else {
       prevScore = 0;
     }
-    console.log(prevScore)
     modifiedPlayer.history[this.props.rowNum].setDesired(event, prevScore)
     modifiedPlayer.updateHistory(this.props.rowNum)
     this.props.updatePlayer(this.props.cellNum, modifiedPlayer)
@@ -25,14 +23,12 @@ export default class ScoreCell extends Component {
 
   updateTakenTricks(event) {
     let modifiedPlayer = this.props.player
-    //console.log(this.props.rowNum)
     let prevScore
     if (this.props.rowNum !== 0) {
       prevScore = modifiedPlayer.history[this.props.rowNum - 1].score
     } else {
       prevScore = 0;
     }
-    console.log(prevScore)
     modifiedPlayer.history[this.props.rowNum].setTaken(event, prevScore)
     modifiedPlayer.updateHistory(this.props.rowNum)
     this.props.updatePlayer(this.props.cellNum, modifiedPlayer)

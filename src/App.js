@@ -28,8 +28,6 @@ export default class App extends React.Component {
     this.changeUpAndDown = this.changeUpAndDown.bind(this)
     this.updatePlayer = this.updatePlayer.bind(this)
 
-    //this.updatePlayerHistory(0, 4, 20)
-
   }
 
   toggleNegativeScores() {
@@ -40,12 +38,11 @@ export default class App extends React.Component {
   }
 
   addPlayer() {
-    this.setState(state => ({ players: [...state.players, new Player(this.state.players.length)] }))
+    this.setState(state => ({ players: [...state.players, new Player(this.state.players.length, this.state.numRounds)] }))
   }
 
   removePlayer() {
-    let array = this.state.players
-    let popped = array.pop()
+    let array = this.state.players.slice(0, -1)
     this.setState({players: array})
   }
 
@@ -55,15 +52,6 @@ export default class App extends React.Component {
     } else {
       this.removePlayer()
     }
-    // this.setState({numberOfPlayers: event.target.value})
-  }
-
-  // Used on this.players
-  updatePlayerScore(player) {
-    let playersList = [...this.state.players]
-    let modifiedPlayer;
-    //newSelected.name = 'Barfoo';
-    //this.setState({ selected: newSelected });
   }
 
   updateMaxCards(event) {
