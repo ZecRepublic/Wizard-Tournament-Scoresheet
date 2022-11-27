@@ -17,7 +17,7 @@ export default class ScoreCell extends Component {
       prevScore = 0;
     }
     modifiedPlayer.history[this.props.rowNum].setDesired(event, prevScore)
-    modifiedPlayer.updateHistory(this.props.rowNum)
+    modifiedPlayer.updateHistoryScore(this.props.rowNum)
     this.props.updatePlayer(this.props.cellNum, modifiedPlayer)
   }
 
@@ -30,7 +30,7 @@ export default class ScoreCell extends Component {
       prevScore = 0;
     }
     modifiedPlayer.history[this.props.rowNum].setTaken(event, prevScore)
-    modifiedPlayer.updateHistory(this.props.rowNum)
+    modifiedPlayer.updateHistoryScore(this.props.rowNum)
     this.props.updatePlayer(this.props.cellNum, modifiedPlayer)
   }
 
@@ -38,9 +38,9 @@ export default class ScoreCell extends Component {
     return (
       <td className="Score">
         <div className="Score-grid">
-          <input className="desiredTricks" type="number" onChange={this.updateDesiredTricks}>
+          <input className="desiredTricks" type="number" min="0" onChange={this.updateDesiredTricks}>
           </input>
-          <input className="takenTricks" type="number" onChange={this.updateTakenTricks}>
+          <input className="takenTricks" type="number" min="0" onChange={this.updateTakenTricks}>
           </input>
           <span>{this.props.player.history[this.props.rowNum].score.toString()}</span>
         </div>

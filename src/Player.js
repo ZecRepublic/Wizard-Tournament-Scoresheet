@@ -1,9 +1,10 @@
 class Score {
-  constructor() {
+  constructor(cardCount) {
 
     this.desiredTricks = undefined
     this.takenTricks = undefined
     this.score = 0
+    this.cardCount = cardCount;
 
     this.setDesired = this.setDesired.bind(this);
     this.setTaken = this.setTaken.bind(this);
@@ -57,7 +58,7 @@ class Score {
 
 
 export default class Player {
-  constructor(id, numRounds) {
+  constructor(id, settings) {
 
     this.id = id
     this.name = "Player"
@@ -65,20 +66,31 @@ export default class Player {
     this.dealer = false
     this.history = []
 
-    for (let i = 0; i < numRounds; i++) {
-      this.history.push(new Score())
+    for (let i = 0; i < settings.maxCards; i++) {
+      this.history.push(new Score(i + 1))
     }
+    console.log(this.history)
+    if (settings.upAndDown) {
+      for (let i = settings.maxCards; i > 0; i--) {
+        this.history.push(new Score(i-1))
+      }
+    }
+    console.log(this.history)
 
-    this.updateHistory = this.updateHistory.bind(this)
+
+    this.updateHistoryScore = this.updateHistoryScore.bind(this)
 
   }
 
-  updateHistory(startIndex) {
+  updateHistoryScore(startIndex) {
     let newScore = this.history[startIndex].score
     console.log(newScore)
     for (let i = startIndex + 1; i < this.history.length; i++) {
       this.history[i].calculateScore(newScore)
-      
     }
+  }
+
+  toggleUpAndDown() {
+    
   }
 }

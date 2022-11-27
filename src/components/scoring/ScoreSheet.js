@@ -19,7 +19,7 @@ export default class ScoreSheet extends Component {
             )}
           </tr>
           {this.rows.map((row) => 
-            <ScoreRow key={row} rowNum={row} players={this.props.players} allowNegativeScores={this.props.allowNegativeScores} updatePlayer={this.props.updatePlayer} />
+            <ScoreRow key={row} rowNum={row} players={this.props.players} updatePlayer={this.props.updatePlayer} />
           )}
         </tbody>
       </table>

@@ -16,8 +16,10 @@ export default class App extends React.Component {
       maxCards: maxCardsStart,
       numRounds: numRounds,
       upAndDown: true,
-      players: [new Player(0, numRounds), new Player(1, numRounds)],
+      players: []
     }
+
+    this.state.players = [...this.state.players, new Player(0, this.state), new Player(1, this.state)]
 
     this.addPlayer = this.addPlayer.bind(this)
     this.removePlayer = this.removePlayer.bind(this)
@@ -38,7 +40,7 @@ export default class App extends React.Component {
   }
 
   addPlayer() {
-    this.setState(state => ({ players: [...state.players, new Player(this.state.players.length, this.state.numRounds)] }))
+    this.setState(state => ({ players: [...state.players, new Player(this.state.players.length, this.state)] }))
   }
 
   removePlayer() {
@@ -60,6 +62,11 @@ export default class App extends React.Component {
 
   changeUpAndDown(event) {
     this.setState({ upAndDown: !this.state.upAndDown })
+    if (!this.state.upAndDown) {
+      this.setState({ numRounds: this.state.maxCards * 2 - 1 })
+    } else {
+      this.setState({ numRounds: this.state.maxCards })
+    }
   }
 
   updatePlayer(playerIndex, modifiedPlayer) {
@@ -85,12 +92,10 @@ export default class App extends React.Component {
           changeUpAndDown={this.changeUpAndDown}
         />
         <ScoreSheet 
-          allowNegativeScores={this.state.allowNegativeScores} 
           players={this.state.players} 
           maxCards={this.state.maxCards}
           upAndDown={this.state.upAndDown}
           numRounds={this.state.numRounds}
-          updatePlayerHistory={this.updatePlayerHistory}
           updatePlayer={this.updatePlayer}
         />
       </div>
