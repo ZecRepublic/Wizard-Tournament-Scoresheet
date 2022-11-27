@@ -33,10 +33,18 @@ export default class App extends React.Component {
   }
 
   toggleNegativeScores() {
-    console.log('allow negatives changed')
-    this.setState(state => ({
-      allowNegativeScores: !state.allowNegativeScores
-    }))
+    console.log("running")
+    let newBool = !this.state.allowNegativeScores
+    this.setState(state => ({ allowNegativeScores: newBool }))
+    console.log('allow negatives changed', newBool)
+    let playersList = [...this.state.players]
+    playersList.forEach((player, index) => {
+      // player.toggleNegatives(this.state.allowNegativeScores)
+      player.recalculateHistory(newBool)
+      // console.log(player)
+      this.updatePlayer(index, player)
+    })
+
   }
 
   addPlayer() {
@@ -72,7 +80,7 @@ export default class App extends React.Component {
   updatePlayer(playerIndex, modifiedPlayer) {
     let playerList = [...this.state.players]
     playerList[playerIndex] = modifiedPlayer
-    this.setState({ playerList: playerList })
+    this.setState({ players: playerList })
   }
 
   render() {
@@ -96,6 +104,7 @@ export default class App extends React.Component {
           maxCards={this.state.maxCards}
           numRounds={this.state.numRounds}
           updatePlayer={this.updatePlayer}
+          allowNegativeScores={this.state.allowNegativeScores}
         />
       </div>
     )

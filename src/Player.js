@@ -12,19 +12,20 @@ class Score {
 
   }
 
-  setDesired(event, prevScore) {
+  setDesired(event, prevScore, allowNegativeScores) {
     this.desiredTricks = event.target.value
     if (this.takenTricks !== undefined) {
-      this.calculateScore(prevScore)
+      this.calculateScore(prevScore, allowNegativeScores)
     }
   }
 
-  setTaken(event, prevScore) {
+  setTaken(event, prevScore, allowNegativeScores) {
     this.takenTricks = event.target.value
-    this.calculateScore(prevScore)
+    this.calculateScore(prevScore, allowNegativeScores)
   }
 
-  calculateScore(prevScore = 0, allowNegativeScores = false) {
+  calculateScore(prevScore = 0, allowNegativeScores) {
+
 
     // Increment score by multiples of 10
     const SCOREMULTIPLIER = 10;
@@ -68,18 +69,19 @@ export default class Player {
     this.history = []
 
     for (let i = 0; i < settings.maxCards; i++) {
-      this.history.push(new Score(i + 1))
+      this.history.push(new Score(i + 1, settings.allowNegativeScores))
     }
     console.log(this.history)
     if (settings.upAndDown) {
       for (let i = settings.maxCards; i > 0; i--) {
-        this.history.push(new Score(i-1))
+        this.history.push(new Score(i-1, settings.allowNegativeScores))
       }
     }
     console.log(this.history)
 
 
     this.updateHistoryScore = this.updateHistoryScore.bind(this)
+    this.recalculateHistory = this.recalculateHistory.bind(this)
 
   }
 
@@ -87,11 +89,36 @@ export default class Player {
     let newScore = this.history[startIndex].score
     console.log(newScore)
     for (let i = startIndex + 1; i < this.history.length; i++) {
-      this.history[i].calculateScore(newScore)
+      if (this.history[i].score !== "") {
+        this.history[i].calculateScore(newScore)
+      }
     }
   }
 
   toggleUpAndDown() {
 
+  }
+
+  recalculateHistory(allowNegativeScores) {
+    // console.log(allowNegativeScores)
+    let prevScore = 0;
+    this.history.forEach(item => {
+      if (item.score !== "") {
+        item.calculateScore(prevScore, allowNegativeScores)
+        prevScore = item.score;
+      }
+    })
+  }
+
+  toggleNegatives(bool) {
+    // console.log(bool)
+    let prevScore = 0;
+    this.history.forEach(item => {
+      item.allowNegatives = bool
+      if (item.score !== "") {
+        item.calculateScore(prevScore)
+        prevScore = item.score
+      }
+    })
   }
 }
