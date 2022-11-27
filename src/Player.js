@@ -3,7 +3,7 @@ class Score {
 
     this.desiredTricks = undefined
     this.takenTricks = undefined
-    this.score = 0
+    this.score = ""
     this.cardCount = cardCount;
 
     this.setDesired = this.setDesired.bind(this);
@@ -25,9 +25,10 @@ class Score {
   }
 
   calculateScore(prevScore = 0, allowNegativeScores = false) {
-    //console.log(prevScore)
 
+    // Increment score by multiples of 10
     const SCOREMULTIPLIER = 10;
+    // Number of points awarded for correct bidding (usually 20)
     const SUCCESSINCREASE = 2 * SCOREMULTIPLIER;
 
     if ((this.desiredTricks !== undefined) && (this.takenTricks !== undefined)) {
@@ -62,7 +63,7 @@ export default class Player {
 
     this.id = id
     this.name = "Player"
-    this.score = 0
+    this.score = ""
     this.dealer = false
     this.history = []
 
@@ -91,6 +92,6 @@ export default class Player {
   }
 
   toggleUpAndDown() {
-    
+
   }
 }

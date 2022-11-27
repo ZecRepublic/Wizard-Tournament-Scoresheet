@@ -94,7 +94,6 @@ export default class App extends React.Component {
         <ScoreSheet 
           players={this.state.players} 
           maxCards={this.state.maxCards}
-          upAndDown={this.state.upAndDown}
           numRounds={this.state.numRounds}
           updatePlayer={this.updatePlayer}
         />

@@ -17,7 +17,7 @@ export default class ScoreCell extends Component {
       prevScore = 0;
     }
     modifiedPlayer.history[this.props.rowNum].setDesired(event, prevScore)
-    modifiedPlayer.updateHistoryScore(this.props.rowNum)
+    // modifiedPlayer.updateHistoryScore(this.props.rowNum)
     this.props.updatePlayer(this.props.cellNum, modifiedPlayer)
   }
 
@@ -30,7 +30,7 @@ export default class ScoreCell extends Component {
       prevScore = 0;
     }
     modifiedPlayer.history[this.props.rowNum].setTaken(event, prevScore)
-    modifiedPlayer.updateHistoryScore(this.props.rowNum)
+    // modifiedPlayer.updateHistoryScore(this.props.rowNum)
     this.props.updatePlayer(this.props.cellNum, modifiedPlayer)
   }
 
